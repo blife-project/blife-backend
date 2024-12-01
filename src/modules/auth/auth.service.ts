@@ -6,10 +6,12 @@ import { Repository } from "typeorm";
 import { Failed, Success } from "src/helpers/response.helper";
 import { JwtUtil } from "src/utils/jwt.util";
 import { BcryptUtil } from "src/utils/bcrypt.util";
+import { LoginDto, LoginPayloadDto } from "./dto/login.dto";
+import { CFieldError } from "src/helpers/custom-error.helper";
 
 interface IAuthService {
   register(payload: RegisterPayloadDto): Promise<Success<RegisterDto>>;
-  // login(payload: LoginPayloadDto): Promise<LoginDto>
+  login(payload: LoginPayloadDto): Promise<Success<LoginDto>>;
 }
 
 @Injectable()
@@ -45,7 +47,40 @@ export class AuthService implements IAuthService {
       });
       const data = new RegisterDto(token);
 
-      return new Success<RegisterDto>(201, "Success", data);
+      return new Success(201, "Success", data);
+    } catch (error) {
+      Failed.handle(error);
+    }
+  }
+
+  async login(payload: LoginPayloadDto): Promise<Success<LoginDto>> {
+    try {
+      const user = await this.auth.findOne({
+        where: { username: payload.username },
+      });
+      if (!user) {
+        throw new CFieldError(
+          HttpStatus.NOT_FOUND,
+          "username",
+          "Username not found",
+        );
+      }
+
+      if (!this.bcrypt.compare(payload.password, user.password)) {
+        throw new CFieldError(
+          HttpStatus.NOT_FOUND,
+          "password",
+          "Incorrect password",
+        );
+      }
+
+      const token = this.jwt.generate({
+        username: user.username,
+        role: user.role,
+      });
+      const data = new LoginDto(token);
+
+      return new Success(HttpStatus.OK, "Success", data);
     } catch (error) {
       Failed.handle(error);
     }

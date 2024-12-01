@@ -30,10 +30,19 @@ export class Failed {
       )
     ) {
       const errors = (error as ValidationError[]).map((item) => {
-        let message = item.constraints[
-          Object.keys(item.constraints)[0]
-        ].replace("_", " ");
-        message = `${message.charAt(0).toUpperCase()}${message.slice(1)}`;
+        let message: string;
+
+        if (item.constraints.isNotEmpty) {
+          message = item.constraints.isNotEmpty;
+        } else {
+          message = item.constraints[Object.keys(item.constraints)[0]];
+        }
+
+        message =
+          `${message.charAt(0).toUpperCase()}${message.slice(1)}`.replace(
+            "_",
+            " ",
+          );
 
         return {
           field: item.property,
