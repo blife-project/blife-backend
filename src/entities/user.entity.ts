@@ -10,8 +10,8 @@ export enum Role {
   ADMIN = "ADMIN",
 }
 
-@Entity("auth")
-export class Auth {
+@Entity("users")
+export class User {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 

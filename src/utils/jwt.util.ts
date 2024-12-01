@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { Role } from "src/modules/auth/entities/auth.entity";
+import { Role } from "src/entities/user.entity";
 
 export class JwtPayload {
   username: string;
