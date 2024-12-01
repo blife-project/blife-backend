@@ -1,0 +1,30 @@
+echo 'Styling, testing and building your project before committing'
+
+# Check Prettier standards
+npm run check-format ||
+(
+    echo 'iuhhh iuhhh.... - Your styling looks disgusting. 
+            Prettier Check Failed. Run npm run format, add changes using git add and try commit again.';
+    false;
+)
+
+# Check ESLint Standards
+npm run check-lint ||
+(
+        echo 'Get that weak shit out of here! 
+                ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
+        false; 
+)
+
+# If everything passes... Now we can commit
+echo '... Alright.... Code looks good to me... Trying to build now. '
+
+npm run build ||
+(
+    echo '❌Your build failed ❌
+    '
+    false;
+)
+
+# If everything passes... Now we can commit
+echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
