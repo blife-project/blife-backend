@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
 
 export enum Role {
@@ -15,18 +16,18 @@ export class User {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column("varchar", { name: "username", unique: true })
+  @Column({ name: "username", type: "varchar", unique: true })
   username: string;
 
-  @Column("varchar", { name: "password" })
+  @Column({ name: "password", type: "varchar" })
   password: string;
 
-  @Column("enum", { name: "role", enum: Role, default: Role.USER })
+  @Column({ name: "role", type: "enum", enum: Role, default: Role.USER })
   role: Role;
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
 
-  @CreateDateColumn({ name: "updated_at" })
+  @UpdateDateColumn({ name: "updated_at" })
   updatedAt: Date;
 }

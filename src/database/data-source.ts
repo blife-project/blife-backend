@@ -2,6 +2,8 @@ import { DataSource } from "typeorm";
 import { ConfigService } from "@nestjs/config";
 import { config } from "dotenv";
 import { User } from "../entities/user.entity";
+import { Clothes } from "../entities/clothes.entity";
+import { ClothesCategory } from "../entities/clothes-category.entity";
 
 config();
 const configService = new ConfigService();
@@ -15,7 +17,7 @@ const AppDataSource = new DataSource({
   database: configService.getOrThrow("DB_DATABASE"),
   synchronize: false,
   migrations: ["src/migrations/*-migration.ts"],
-  entities: [User],
+  entities: [User, Clothes, ClothesCategory],
 });
 
 export default AppDataSource;

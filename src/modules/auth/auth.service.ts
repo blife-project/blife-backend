@@ -8,6 +8,7 @@ import { JwtUtil } from "src/utils/jwt.util";
 import { BcryptUtil } from "src/utils/bcrypt.util";
 import { LoginDto, LoginPayloadDto } from "./dto/login.dto";
 import { CFieldError } from "src/helpers/custom-error.helper";
+import { RespMessage } from "src/helpers/message.helper";
 
 interface IAuthService {
   register(payload: RegisterPayloadDto): Promise<Success<RegisterDto>>;
@@ -17,8 +18,7 @@ interface IAuthService {
 @Injectable()
 export class AuthService implements IAuthService {
   constructor(
-    @InjectRepository(User)
-    private user: Repository<User>,
+    @InjectRepository(User) private user: Repository<User>,
     private jwt: JwtUtil,
     private bcrypt: BcryptUtil,
   ) {}
@@ -42,12 +42,13 @@ export class AuthService implements IAuthService {
       const res = await this.user.save(user);
 
       const token = this.jwt.generate({
+        id: res.id,
         username: res.username,
         role: res.role,
       });
       const data = new RegisterDto(token);
 
-      return new Success(201, "Success", data);
+      return new Success(HttpStatus.CREATED, RespMessage.CREATED, data);
     } catch (error) {
       Failed.handle(error);
     }
@@ -58,6 +59,7 @@ export class AuthService implements IAuthService {
       const user = await this.user.findOne({
         where: { username: payload.username },
       });
+
       if (!user) {
         throw new CFieldError(
           HttpStatus.NOT_FOUND,
@@ -75,12 +77,13 @@ export class AuthService implements IAuthService {
       }
 
       const token = this.jwt.generate({
+        id: user.id,
         username: user.username,
         role: user.role,
       });
       const data = new LoginDto(token);
 
-      return new Success(HttpStatus.OK, "Success", data);
+      return new Success(HttpStatus.OK, RespMessage.LOADED, data);
     } catch (error) {
       Failed.handle(error);
     }

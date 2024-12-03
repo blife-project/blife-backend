@@ -3,6 +3,7 @@ import { JwtService } from "@nestjs/jwt";
 import { Role } from "src/entities/user.entity";
 
 export class JwtPayload {
+  id: string;
   username: string;
   role: Role;
 }
