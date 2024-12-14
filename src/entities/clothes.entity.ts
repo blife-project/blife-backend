@@ -28,10 +28,10 @@ export class Clothes {
   @Column({ name: "color", type: "varchar" })
   color: string;
 
-  @Column({ name: "size", type: "varchar" })
+  @Column({ name: "size", type: "varchar", nullable: true })
   size: string;
 
-  @Column({ name: "description", type: "varchar" })
+  @Column({ name: "description", type: "varchar", nullable: true })
   description: string;
 
   @Column({
@@ -48,11 +48,11 @@ export class Clothes {
   @Column({ name: "moved_time", type: "varchar" })
   moved_time: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { nullable: false })
   @JoinColumn({ name: "user_id" })
   user: User;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => ClothesCategory, { nullable: false })
   @JoinColumn({ name: "clothes_category_id" })
   clothes_category: ClothesCategory;
 

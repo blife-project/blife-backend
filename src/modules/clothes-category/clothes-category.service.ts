@@ -53,6 +53,10 @@ export class ClothesCategoryService implements IClothesCategoryService {
         where: { id, user: { id: userId } },
       });
 
+      if (!clothesCategory) {
+        throw new HttpException("Clothes category not found", 400);
+      }
+
       const data: ClothesCategoryDto = new ClothesCategoryDto(clothesCategory);
       return new Success(HttpStatus.OK, RespMessage.LOADED, data);
     } catch (error) {
@@ -113,7 +117,7 @@ export class ClothesCategoryService implements IClothesCategoryService {
         throw new HttpException(RespMessage.NOTFOUND, HttpStatus.NOT_FOUND);
       }
 
-      await this.clothesCategory.delete({ id, user: { id } });
+      await this.clothesCategory.remove(clothesCategory);
       return new Success(HttpStatus.OK, RespMessage.DELETED, null);
     } catch (error) {
       Failed.handle(error);

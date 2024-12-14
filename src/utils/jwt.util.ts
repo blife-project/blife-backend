@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { Role } from "src/entities/user.entity";
 
@@ -17,6 +17,10 @@ export class JwtUtil {
   }
 
   verify(token: string): JwtPayload {
-    return this.jwt.verify<JwtPayload>(token);
+    try {
+      return this.jwt.verify<JwtPayload>(token);
+    } catch {
+      throw new HttpException("Unauthorized", 401);
+    }
   }
 }

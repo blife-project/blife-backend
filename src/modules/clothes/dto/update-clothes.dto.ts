@@ -1,4 +1,10 @@
-import { IsEnum, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import {
+  ArrayNotEmpty,
+  IsArray,
+  IsEnum,
+  IsNotEmpty,
+  IsString,
+} from "class-validator";
 import { ClothesPosition } from "src/entities/clothes.entity";
 
 export class UpdateClothesPayloadDto {
@@ -22,14 +28,12 @@ export class UpdateClothesPayloadDto {
 }
 
 export class UpdateClothesPositionPayload {
-  @IsString()
-  @IsNotEmpty()
-  public id: string;
+  @IsArray()
+  @IsString({ each: true })
+  @ArrayNotEmpty()
+  public ids: string[];
 
-  @IsEnum(ClothesPosition)
+  @IsEnum(ClothesPosition, { each: true })
   @IsNotEmpty()
   public position: ClothesPosition;
-
-  @IsOptional()
-  public user_id?: string;
 }

@@ -18,6 +18,7 @@ export class Failed {
   static handle(error: Error | ValidationError[]) {
     const logger = new Logger();
     logger.error(error);
+    console.log(error as any);
 
     if (error instanceof HttpException) {
       throw error;

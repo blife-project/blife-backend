@@ -34,7 +34,7 @@ export class ClothesController {
   }
 
   @Get(":id")
-  findOne(@Param() id: string) {
+  findOne(@Param("id") id: string) {
     return this.clothes.findOne(id);
   }
 
@@ -44,17 +44,17 @@ export class ClothesController {
   }
 
   @Put(":id")
-  update(@Param() id: string, @Body() payload: UpdateClothesPayloadDto) {
+  update(@Param("id") id: string, @Body() payload: UpdateClothesPayloadDto) {
     return this.clothes.update(id, payload);
   }
 
   @Delete(":id")
-  delete(@Param() id: string) {
+  delete(@Param("id") id: string) {
     return this.clothes.delete(id);
   }
 
   @Patch("position")
-  updatePosition(@Body() payloads: UpdateClothesPositionPayload[]) {
-    return this.clothes.updatePosition(payloads);
+  updatePosition(@Body() payload: UpdateClothesPositionPayload) {
+    return this.clothes.updatePosition(payload);
   }
 }

@@ -30,7 +30,7 @@ export class ClothesCategoryController {
   }
 
   @Get(":id")
-  findOne(@Param() id: string) {
+  findOne(@Param("id") id: string) {
     return this.clothesCategoriesService.findOne(id);
   }
 
@@ -41,14 +41,14 @@ export class ClothesCategoryController {
 
   @Put(":id")
   update(
-    @Param() id: string,
+    @Param("id") id: string,
     @Body() payload: UpdateClothesCategoryDtoPayload,
   ) {
     return this.clothesCategoriesService.update(id, payload);
   }
 
   @Delete(":id")
-  delete(@Param() id: string) {
+  delete(@Param("id") id: string) {
     return this.clothesCategoriesService.delete(id);
   }
 }

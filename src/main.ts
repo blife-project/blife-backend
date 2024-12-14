@@ -15,6 +15,7 @@ async function bootstrap() {
       exceptionFactory: (errors) => {
         Failed.handle(errors);
       },
+      transform: true,
     }),
   );
 
