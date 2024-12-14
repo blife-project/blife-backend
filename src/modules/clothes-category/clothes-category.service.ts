@@ -1,13 +1,13 @@
 import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
-import { Failed, Success } from "src/helpers/response.helper";
+import { Failed, Success } from "../../helpers/response.helper";
 import { ClothesCategoryDto } from "./dto/clothes-category.dto";
 import { CreateClothesCategoryDtoPayload } from "./dto/create-clothes-category.dto";
 import { UpdateClothesCategoryDtoPayload } from "./dto/update-clothes-category.dto";
 import { Repository } from "typeorm";
-import { ClothesCategory } from "src/entities/clothes-category.entity";
+import { ClothesCategory } from "../../entities/clothes-category.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { REQUEST } from "@nestjs/core";
-import { RespMessage } from "src/helpers/message.helper";
+import { RespMessage } from "../../helpers/message.helper";
 
 interface IClothesCategoryService {
   findMany(): Promise<Success<ClothesCategoryDto[]>>;

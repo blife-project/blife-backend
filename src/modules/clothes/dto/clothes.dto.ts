@@ -1,6 +1,6 @@
 import { IsOptional, IsString } from "class-validator";
-import { Clothes, ClothesPosition } from "src/entities/clothes.entity";
-import { PaginationParams } from "src/helpers/pagination.helper";
+import { Clothes, ClothesPosition } from "../../../entities/clothes.entity";
+import { PaginationParams } from "../../../helpers/pagination.helper";
 
 export class ClothesDto {
   public id: string;

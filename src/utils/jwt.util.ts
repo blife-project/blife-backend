@@ -1,6 +1,6 @@
 import { HttpException, Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { Role } from "src/entities/user.entity";
+import { Role } from "../entities/user.entity";
 
 export class JwtPayload {
   id: string;

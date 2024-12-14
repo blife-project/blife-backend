@@ -1,6 +1,9 @@
 import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
-import { Pagination, PaginationResponse } from "src/helpers/pagination.helper";
-import { Failed, Success } from "src/helpers/response.helper";
+import {
+  Pagination,
+  PaginationResponse,
+} from "../../helpers/pagination.helper";
+import { Failed, Success } from "../../helpers/response.helper";
 import { ClothesDto, ClothesParamsDto } from "./dto/clothes.dto";
 import { CreateClothesPayloadDto } from "./dto/create-clothes.dto";
 import {
@@ -8,12 +11,12 @@ import {
   UpdateClothesPositionPayload,
 } from "./dto/update-clothes.dto";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Clothes } from "src/entities/clothes.entity";
+import { Clothes } from "../../entities/clothes.entity";
 import { Repository } from "typeorm";
 import { REQUEST } from "@nestjs/core";
-import { RespMessage } from "src/helpers/message.helper";
-import { User } from "src/entities/user.entity";
-import { ClothesCategory } from "src/entities/clothes-category.entity";
+import { RespMessage } from "../../helpers/message.helper";
+import { User } from "../../entities/user.entity";
+import { ClothesCategory } from "../../entities/clothes-category.entity";
 
 interface IClothesService {
   findMany(

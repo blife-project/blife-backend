@@ -2,9 +2,9 @@ import { Module } from "@nestjs/common";
 import { ClothesCategoryService } from "./clothes-category.service";
 import { ClothesCategoryController } from "./clothes-category.controller";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { ClothesCategory } from "src/entities/clothes-category.entity";
-import { JwtUtil } from "src/utils/jwt.util";
-import { JwtConfig } from "src/configs/jwt.config";
+import { ClothesCategory } from "../../entities/clothes-category.entity";
+import { JwtUtil } from "../../utils/jwt.util";
+import { JwtConfig } from "../../configs/jwt.config";
 
 @Module({
   imports: [TypeOrmModule.forFeature([ClothesCategory]), JwtConfig],

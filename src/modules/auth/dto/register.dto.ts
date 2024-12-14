@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString, MinLength, Validate } from "class-validator";
-import { IsEqualTo } from "src/helpers/validation.helper";
+import { IsEqualTo } from "../../../helpers/validation.helper";
 
 export class RegisterPayloadDto {
   @IsString()

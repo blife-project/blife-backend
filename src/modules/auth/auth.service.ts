@@ -3,12 +3,12 @@ import { RegisterDto, RegisterPayloadDto } from "./dto/register.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "../../entities/user.entity";
 import { Repository } from "typeorm";
-import { Failed, Success } from "src/helpers/response.helper";
-import { JwtUtil } from "src/utils/jwt.util";
-import { BcryptUtil } from "src/utils/bcrypt.util";
+import { Failed, Success } from "../../helpers/response.helper";
+import { JwtUtil } from "../../utils/jwt.util";
+import { BcryptUtil } from "../../utils/bcrypt.util";
 import { LoginDto, LoginPayloadDto } from "./dto/login.dto";
-import { CFieldError } from "src/helpers/custom-error.helper";
-import { RespMessage } from "src/helpers/message.helper";
+import { CFieldError } from "../../helpers/custom-error.helper";
+import { RespMessage } from "../../helpers/message.helper";
 
 interface IAuthService {
   register(payload: RegisterPayloadDto): Promise<Success<RegisterDto>>;

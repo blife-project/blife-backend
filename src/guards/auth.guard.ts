@@ -5,8 +5,8 @@ import {
   HttpStatus,
   Injectable,
 } from "@nestjs/common";
-import { Failed } from "src/helpers/response.helper";
-import { JwtUtil } from "src/utils/jwt.util";
+import { Failed } from "../helpers/response.helper";
+import { JwtUtil } from "../utils/jwt.util";
 
 @Injectable()
 export class AuthGuard implements CanActivate {

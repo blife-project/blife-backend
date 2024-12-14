@@ -5,7 +5,7 @@ import {
   IsNotEmpty,
   IsString,
 } from "class-validator";
-import { ClothesPosition } from "src/entities/clothes.entity";
+import { ClothesPosition } from "../../../entities/clothes.entity";
 
 export class UpdateClothesPayloadDto {
   @IsString()

@@ -1,4 +1,4 @@
-import { ClothesCategory } from "src/entities/clothes-category.entity";
+import { ClothesCategory } from "../../../entities/clothes-category.entity";
 
 export class ClothesCategoryDto {
   public id: string;

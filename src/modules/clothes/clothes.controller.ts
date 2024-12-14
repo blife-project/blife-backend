@@ -11,10 +11,10 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { ClothesService } from "./clothes.service";
-import { AuthGuard } from "src/guards/auth.guard";
-import { Roles } from "src/decorators/roles.decorator";
-import { Role } from "src/entities/user.entity";
-import { RoleGuard } from "src/guards/role.guard";
+import { AuthGuard } from "../../guards/auth.guard";
+import { Roles } from "../../decorators/roles.decorator";
+import { Role } from "../../entities/user.entity";
+import { RoleGuard } from "../../guards/role.guard";
 import { ClothesParamsDto } from "./dto/clothes.dto";
 import { CreateClothesPayloadDto } from "./dto/create-clothes.dto";
 import {

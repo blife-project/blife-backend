@@ -9,10 +9,10 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { ClothesCategoryService } from "./clothes-category.service";
-import { Roles } from "src/decorators/roles.decorator";
-import { Role } from "src/entities/user.entity";
-import { AuthGuard } from "src/guards/auth.guard";
-import { RoleGuard } from "src/guards/role.guard";
+import { Roles } from "../../decorators/roles.decorator";
+import { Role } from "../../entities/user.entity";
+import { AuthGuard } from "../../guards/auth.guard";
+import { RoleGuard } from "../../guards/role.guard";
 import { CreateClothesCategoryDtoPayload } from "./dto/create-clothes-category.dto";
 import { UpdateClothesCategoryDtoPayload } from "./dto/update-clothes-category.dto";
 
