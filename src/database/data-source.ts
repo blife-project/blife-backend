@@ -16,8 +16,9 @@ const AppDataSource = new DataSource({
   password: String(configService.getOrThrow("DB_PASSWORD")),
   database: configService.getOrThrow("DB_DATABASE"),
   synchronize: false,
-  migrations: ["src/migrations/*-migration.ts"],
+  migrations: ["./migrations/*-migration.ts"],
   entities: [User, Clothes, ClothesCategory],
+  ssl: true,
 });
 
 export default AppDataSource;
