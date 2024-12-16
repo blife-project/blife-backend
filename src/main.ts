@@ -10,6 +10,7 @@ async function bootstrap() {
   const environment = process.env.ENVIRONMENT ?? "development";
   const address = `${environment === "development" ? "http" : "https"}://${host}:${port}`;
 
+  app.enableCors();
   app.useGlobalPipes(
     new ValidationPipe({
       exceptionFactory: (errors) => {
@@ -18,8 +19,6 @@ async function bootstrap() {
       transform: true,
     }),
   );
-
-  app.enableCors();
 
   await app.listen(port, () => {
     console.log(`Your app is running on ${address}`);
