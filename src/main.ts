@@ -5,7 +5,7 @@ import { Failed } from "./helpers/response.helper";
 import { NextFunction, Request, Response } from "express";
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
+  const app = await NestFactory.create(AppModule);
   const host = process.env.HOST ?? "localhost";
   const port = process.env.PORT ?? 3002;
   const environment = process.env.ENVIRONMENT ?? "development";
@@ -18,8 +18,12 @@ async function bootstrap() {
       "GET,POST,PUT,DELETE,PATCH,OPTIONS",
     );
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.header("Access-Control-Allow-Credentials", "true");
     next();
+  });
+
+  app.enableCors({
+    allowedHeaders: "*",
+    origin: "*",
   });
 
   app.useGlobalPipes(
