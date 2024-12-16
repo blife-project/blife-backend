@@ -10,7 +10,12 @@ async function bootstrap() {
   const environment = process.env.ENVIRONMENT ?? "development";
   const address = `${environment === "development" ? "http" : "https"}://${host}:${port}`;
 
-  app.enableCors();
+  app.enableCors({
+    origin: "http://localhost:3001",
+    methods: "*",
+    allowedHeaders: "Content-Type, Authorization, X-Custom-Header",
+  });
+
   app.useGlobalPipes(
     new ValidationPipe({
       exceptionFactory: (errors) => {
