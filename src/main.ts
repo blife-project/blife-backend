@@ -2,7 +2,6 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { ValidationPipe } from "@nestjs/common";
 import { Failed } from "./helpers/response.helper";
-import { NextFunction, Request, Response } from "express";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -11,19 +10,11 @@ async function bootstrap() {
   const environment = process.env.ENVIRONMENT ?? "development";
   const address = `${environment === "development" ? "http" : "https"}://${host}:${port}`;
 
-  app.use((_req: Request, res: Response, next: NextFunction) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header(
-      "Access-Control-Allow-Methods",
-      "GET,POST,PUT,DELETE,PATCH,OPTIONS",
-    );
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    next();
-  });
-
   app.enableCors({
-    allowedHeaders: "*",
     origin: "*",
+    methods: "GET,POST,PUT,DELETE,PATCH,OPTIONS",
+    allowedHeaders: "Content-Type, Authorization",
+    preflightContinue: true,
   });
 
   app.useGlobalPipes(
