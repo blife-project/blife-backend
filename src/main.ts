@@ -2,6 +2,7 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { ValidationPipe } from "@nestjs/common";
 import { Failed } from "./helpers/response.helper";
+import { NextFunction, Request, Response } from "express";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
@@ -9,6 +10,17 @@ async function bootstrap() {
   const port = process.env.PORT ?? 3002;
   const environment = process.env.ENVIRONMENT ?? "development";
   const address = `${environment === "development" ? "http" : "https"}://${host}:${port}`;
+
+  app.use((_req: Request, res: Response, next: NextFunction) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+      "Access-Control-Allow-Methods",
+      "GET,POST,PUT,DELETE,PATCH,OPTIONS",
+    );
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", "true");
+    next();
+  });
 
   app.useGlobalPipes(
     new ValidationPipe({
