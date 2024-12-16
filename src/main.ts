@@ -2,22 +2,13 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { ValidationPipe } from "@nestjs/common";
 import { Failed } from "./helpers/response.helper";
-import cors from "cors";
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   const host = process.env.HOST ?? "localhost";
   const port = process.env.PORT ?? 3002;
   const environment = process.env.ENVIRONMENT ?? "development";
   const address = `${environment === "development" ? "http" : "https"}://${host}:${port}`;
-
-  app.use(
-    cors({
-      origin: "*",
-      methods: "*",
-      allowedHeaders: "*",
-    }),
-  );
 
   app.useGlobalPipes(
     new ValidationPipe({
