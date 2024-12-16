@@ -11,7 +11,7 @@ async function bootstrap() {
   const address = `${environment === "development" ? "http" : "https"}://${host}:${port}`;
 
   app.enableCors({
-    origin: "*",
+    origin: "http://localhost:3001",
     methods: "GET,POST,PUT,DELETE,PATCH,OPTIONS",
     allowedHeaders: "Content-Type, Authorization",
     preflightContinue: true,
