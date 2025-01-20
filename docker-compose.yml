@@ -19,3 +19,21 @@ services:
       - JWT_EXPIRES_IN=${JWT_EXPIRES_IN}
     ports:
       - '3013:3013'
+    depends_on:
+      - db 
+
+  db:
+    image: postgres:latest 
+    container_name: blife-db
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+    ports:
+      - '5432:5433'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+    driver: local
