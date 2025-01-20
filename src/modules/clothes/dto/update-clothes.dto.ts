@@ -25,6 +25,9 @@ export class UpdateClothesPayloadDto {
 
   @IsString()
   public description?: string;
+
+  @IsString()
+  public image_url?: string;
 }
 
 export class UpdateClothesPositionPayload {

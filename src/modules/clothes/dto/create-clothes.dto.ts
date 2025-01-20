@@ -21,6 +21,10 @@ export class CreateClothesPayloadDto {
   @IsOptional()
   public description?: string;
 
+  @IsString()
+  @IsOptional()
+  public image_url?: string;
+
   @IsOptional()
   public user_id?: string;
 }

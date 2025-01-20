@@ -18,7 +18,6 @@ const AppDataSource = new DataSource({
   synchronize: false,
   migrations: ["./migrations/*-migration.ts"],
   entities: [User, Clothes, ClothesCategory],
-  ssl: true,
 });
 
 export default AppDataSource;

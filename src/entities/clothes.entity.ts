@@ -48,6 +48,9 @@ export class Clothes {
   @Column({ name: "moved_time", type: "varchar" })
   moved_time: string;
 
+  @Column({ name: "image_url", type: "varchar" })
+  image_url: string;
+
   @ManyToOne(() => User, { nullable: false })
   @JoinColumn({ name: "user_id" })
   user: User;
