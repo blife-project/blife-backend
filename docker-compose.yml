@@ -30,7 +30,7 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_DATABASE}
     ports:
-      - '5432:5433'
+      - '5433:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
